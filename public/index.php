@@ -43,6 +43,14 @@ $router->add("admin/add_account/valid", ['controller' => 'AdminController', 'act
 
 $router->add("admin/add_actuality", ['controller' => 'HomeController', 'action' => 'admin_add_actuality_page']);
 $router->add("admin/add_actuality/valid", ['controller' => 'AdminController', 'action' => 'admin_add_actuality_valid']);
+$router->add("admin/see_actuality", ['controller' => 'HomeController', 'action' => 'admin_see_actuality']);
+$router->add("admin/see_actuality/modify", ['controller' => 'AdminController', 'action' => 'admin_modify_actuality']);
+
+$router->add("admin/see_users", ["controller" => "HomeController", "action" => "admin_see_users"]);
+$router->add("admin/see_users/modify", ["controller" => "AdminController", "action" => "admin_modify_user"]);
+
+
+
 
 $router->dispatch($_SERVER['QUERY_STRING']);
 

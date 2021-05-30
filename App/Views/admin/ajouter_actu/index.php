@@ -49,7 +49,7 @@
                                                 placeholder="Entrez un titre" name="title">
                                         </div>
                                         <div class="form-group">
-                                        <textarea class="form-control form-control-user" placeholder="Entrer un contenu" name="content"></textarea>
+                                        <textarea class="form-control form-control-user" placeholder="Entrer un contenu (<br> pour faire un saut de ligne )" name="content"></textarea>
 
                                         </div>
                                         <button class="btn btn-primary btn-user btn-block">

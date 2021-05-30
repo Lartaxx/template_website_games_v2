@@ -45,5 +45,16 @@ class HomeController extends \Core\Controller
         View::renderTemplate("admin/ajouter_actu/index.php");
     }
 
+    public function admin_see_users() {
+        $manager = new AdminModel;
+        $users = $manager->getAllUsers();
+        View::renderTemplate("admin/voir_utilisateurs/index.php", compact("users"));
+    }
+
+    public function admin_see_actuality() {
+        $annonces = new AdminModel;
+        $all_annonces = $annonces->getAllAnnounces();
+        View::renderTemplate("admin/voir_actualites/index.php", compact("all_annonces"));
+    }
    
 }

@@ -13,13 +13,14 @@
     <title>Administrateur - {{ session.name }} </title>
 
     <!-- Custom fonts for this template-->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../assets/css/sb-admin-2.min.css" rel="stylesheet">
+
 
 </head>
 
@@ -44,7 +45,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="../admin">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -67,8 +68,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Choisir une action :</h6>
-                        <a class="collapse-item" href="./admin/add_actuality">Créer une actualité</a>
-                        <a class="collapse-item" href="./admin/see_actuality">Voir les acutalités</a>
+                        <a class="collapse-item" href="./add_actuality">Créer une actualité</a>
+                        <a class="collapse-item" href="./see_actuality">Voir les acutalités</a>
                     </div>
                 </div>
             </li>
@@ -84,8 +85,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Choisir une action :</h6>
-                        <a class="collapse-item" href="./admin/add_account">Ajouter un utilisateur</a>
-                        <a class="collapse-item" href="./admin/see_users">Voir les utilisateurs</a>
+                        <a class="collapse-item" href="./add_account">Ajouter un utilisateur</a>
+                        <a class="collapse-item" href="#">Voir les utilisateurs</a>
                     </div>
                 </div>
             </li>
@@ -106,12 +107,7 @@
                     <span>Discord de support</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fab fa-goodreads-g"></i>
-                    <span>Version du jeu : {{ server.version }}</span></a>
-            </li>
+           
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -180,111 +176,18 @@
 
                    
 
-                    <!-- Content Row -->
-                    <div class="row">
+                         
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Nombre d'utilisateurs</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ all_users }}</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                        {% if server and server.gq_online == true %}
-                            <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Status du serveur</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Ouvert</div>
-                                            </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-lock-open fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% else %}
-                            <div class="card border-left-danger shadow h-100 py-2">
-                            <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                                Status du serveur</div>
-                                                    <div class="h5 mb-0 font-weight-bold text-gray-800">Fermé</div>
-                                            </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-window-close fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                                
-                        </div>
-
-                          <!-- Pending Requests Card Example -->
-                          <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                                Auto-Connexion</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="{{ server.gq_joinlink }}">{{ server.gq_joinlink }}</a></div>
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Nombre de joueurs in-game ( {{ server.gq_name }} )</div>
-                                            {% if server and server.gq_numplayers != NULL %}
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ server.gq_numplayers }}/{{ server.gq_maxplayers }} ( {{ server.gq_maxplayers - server.gq_numplayers }} places restantes )</div>
-                                            {% else %}
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Serveur fermé ou données non récupérables</div>
-                                            {% endif %}
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-gamepad fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <!-- Content Row -->
 
                        
                 
-                <!-- /.container-fluid -->
+       <!-- /.container-fluid -->
                       <!-- DataTales Example -->
-             <div class="card shadow mb-4">
+                      <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Joueurs en ligne</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Tous les utilisateurs ({{ users|length }})</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -292,28 +195,39 @@
                                     <thead>
                                         <tr>
                                             <th>Nom</th>
-                                            <th>Nombre de morts</th>
-                                            <th>Temps de jeu</th>
+                                            <th>Email</th>
+                                            <th>Image</th>
+                                            <th>Administrateur</th>
+                                            <th>Modification</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>Nom</th>
-                                            <th>Nombre de morts</th>
-                                            <th>Temps de jeu</th>
+                                            <th>Email</th>
+                                            <th>Image</th>
+                                            <th>Administrateur</th>
+                                            <th>Modification</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        {% for player in server.players %}
-                                            {% if not player.name %}
-                                                {% set player_name = "En cours de connexion" %}
+                                        {% for user in users %}
+                                            {% if not user.img_link %}
+                                                {% set img_link = "Image de base" %}
                                             {% else %}
-                                                {% set player_name = player.name %}
+                                                {% set img_link = user.img_link %}
+                                            {% endif %}
+                                            {% if user.is_admin == 1 %}
+                                                {% set is_admin %} <span style="color: green;">Oui</span> {% endset %}
+                                            {% else %}
+                                                {% set is_admin %} <span style="color: red;">Non</span> {% endset %}
                                             {% endif %}
                                         <tr>
-                                            <td>{{ player_name }}</td>
-                                            <td>{{ player.score }}</td>
-                                            <td>{{ player.time|round|date('H:i:s', '+00:00 GMT') }}</td>
+                                            <td>{{ user.username }}</td>
+                                            <td>{{ user.email }}</td>
+                                            <td>{{ img_link }}</td>
+                                            <td>{{ is_admin }}</td>
+                                            <td class="user" user_id="{{ user.id }}" user_name="{{ user.username}}" user_email="{{ user.email }}"  user_img="{{ user.img_link }}" is_admin="{{ user.is_admin}}" data-toggle="modal" data-target="#modalLoginAvatar">Modifier {{ user.username }}</td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
@@ -325,6 +239,7 @@
                 </div>
                 <!-- /.container-fluid -->
           
+          
             </div>
             <!-- End of Main Content -->
 
@@ -332,7 +247,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; {{ server.gq_hostname }}</span>
+                        <span>Copyright &copy; </span>
                     </div>
                 </div>
             </footer>
@@ -369,20 +284,98 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modalLoginAvatar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+    <!--Content-->
+    <div class="modal-content">
+
+      <!--Header-->
+      <div class="modal-header">
+        <img src="https://mdbootstrap.com/img/Photos/Avatars/img%20%281%29.jpg" alt="avatar" class="rounded-circle img-responsive user_link" style="width: 200px; height: 200px;margin-left: auto; margin-right: auto;">
+      </div>
+      <!--Body-->
+      <div class="modal-body text-center mb-1">
+
+        <h5 class="mt-1 mb-2" id="user_name"></h5>
+
+        <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Adresse email</label>
+                <input type="email" class="form-control" id="user_email" aria-describedby="emailHelp" placeholder="Modifier l'email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Lien d'image</label>
+                <input type="text" class="form-control" id="user_image" placeholder="Lien de l'image">
+            </div>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="user_admin">
+                <label class="form-check-label" for="exampleCheck1">Administrateur</label>
+            </div>
+            <br>
+            <a id="send" class="btn btn-primary">Envoyer</a>
+        </form>
+
+        
+
+    </div>
+    <!--/.Content-->
+  </div>
+</div>
+
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="assets/js/sb-admin-2.min.js"></script>
+    <script src="../assets/js/sb-admin-2.min.js"></script>
 
 
-    <script src="../vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.min.js"></script>
-    <script src="assets/js/demo/datatables-demo.js"></script>
+    <script src="../../vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="../../vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../assets/js/demo/datatables-demo.js"></script>
+
+
+    <script>
+    $(document).ready(function() {
+        $(".user").off("click").on("click", function() {
+            to_bdd = 0;
+            id_bdd = $(this).attr("user_id");
+            user_name = $(this).attr("user_name");
+            user_email = $(this).attr("user_email");
+            user_link = $(this).attr("user_img");
+            user_admin = $(this).attr("is_admin");
+            if (user_admin === "1" ) {
+                $("#user_admin").attr("checked", true);
+            }
+            else {
+                $("#user_admin").removeAttr("checked");
+            }
+            $("#user_name").html(user_name);
+            $("#user_email").attr("value", user_email);
+            $("#user_image").attr("value", user_link);
+            if(!user_link) $(".user_link").attr('src', "../assets/img/undraw_profile.svg");
+            else $(".user_link").attr('src', user_link);
+
+           
+            $("#send").off("click").on("click", function() {
+                const email_val = $("#user_email").val();
+                const link_val = $("#user_image").val();
+                const is_admin = $("#user_admin");
+                if ( is_admin[0].checked == true) {
+                    to_bdd = 1;
+                }
+                $.post("../admin/see_users/modify", {id: id_bdd, email: email_val, img_link: link_val, is_admin: parseInt(to_bdd)}, function(res) {
+                    document.location.reload();
+                })
+            })
+        })
+    })
+    
+    </script>
 </body>
 
 </html>

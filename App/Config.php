@@ -50,6 +50,6 @@ class Config
      * Host of your game server HOST/IP:PORT
      * @var string
      */
-    const SERVER_HOST = "149.202.89.164:27031";
+    const SERVER_HOST = "178.239.172.39:27015";
 }
 

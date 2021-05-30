@@ -204,7 +204,7 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Acualité n°{{ loop.index }} - {{ annonce.title }}</h6>
                                 </div>
                                 <div class="card-body">
-                                    <p>{{ annonce.content }}</p> <br><hr><br><span style="font-size: 12px"> Par : {{ annonce.by_admin }} <br> Date : {{ annonce.date }}</span>
+                                    <p>{{ annonce.content|raw }}</p> <br><hr><br><span style="font-size: 12px"> Par : {{ annonce.by_admin }} <br> Date : {{ annonce.date }}</span>
                                 </div>
                             </div>
 					</div>

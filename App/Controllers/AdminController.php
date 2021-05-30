@@ -30,6 +30,16 @@ class AdminController extends \Core\Controller
     if ( isset($_POST["title"], $_POST["content"]) && !empty($_POST["title"]) && !empty($_POST["content"])  ) {
           $adminmanager = new AdminModel;
           $adminmanager->addActu($_POST["title"], $_POST["content"], $_SESSION ? $_SESSION["name"] : "Un administrateur");
+        }
     }
-}
+
+    public function admin_modify_user() {
+        $manager = new AdminModel;
+        $add = $manager->modifyUser($_POST["id"], $_POST["email"], $_POST["img_link"], $_POST["is_admin"]);
+    }
+
+    public function admin_modify_actuality() {
+        $manager = new AdminModel;
+        $add = $manager->modifyActuality($_POST["id"], $_POST["title"], $_POST["content"]);
+    }
 }
