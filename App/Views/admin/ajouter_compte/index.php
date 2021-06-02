@@ -43,6 +43,8 @@
                                         <h1 class="h4 text-gray-900 mb-4">Bienvenue {{ session.name }}</h1>
                                         {% if get and get.error == 1 %}
                                             <p style="color: red;">Un compte est déjà existant avec cet email ou ce pseudo !</p>
+                                        {% elseif get and get.error == 2 %}
+                                            <p style="color: red;">Les deux mots de passes sont différents !</p>
                                         {% endif %}
                                     </div>
                                     <form class="user" action="./add_account/valid" method="POST">

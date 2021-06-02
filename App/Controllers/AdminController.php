@@ -15,7 +15,8 @@ use \Core\PHPSource;
 class AdminController extends \Core\Controller
 {
   public function add_account_valid() {
-      if ( isset($_POST["email"], $_POST["pseudo"], $_POST["pass1"], $_POST["pass2"]) && !empty($_POST["email"]) && !empty($_POST["pseudo"]) && !empty($_POST["pass1"]) && !empty($_POST["pass2"]) && !empty($_POST["admin"]) ) {
+      if ($_POST["pass1"] !== $_POST["pass2"]) return View::headerLocation("../add_account?error=2");
+      if ( isset($_POST["email"], $_POST["pseudo"], $_POST["pass1"], $_POST["pass2"]) && !empty($_POST["email"]) && !empty($_POST["pseudo"]) && !empty($_POST["pass1"]) && !empty($_POST["pass2"])  ) {
             if ( isset($_POST["admin"])) {
                 $is_selected = 1;
             }
