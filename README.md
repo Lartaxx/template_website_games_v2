@@ -16,3 +16,5 @@
 # Le style du site est tiré de ce template : https://preview.uideck.com/items/bliss/, des élèments ont été retirées/ajoutées !
 
 # Livepreview : https://streamable.com/53bn5l
+
+>  # Il se peut que des bugs subviennent si vous avez besoin d'aide, rejoignez le discord de support mis à disposition, je vous aiderais au mieux pour régler vos bugs.

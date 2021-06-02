@@ -154,7 +154,7 @@
            
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="https://discord.gg/4g7PgHgMyK">
                     <i class="fab fa-discord"></i>
                     <span>Discord de support</span></a>
             </li>
