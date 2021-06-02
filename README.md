@@ -10,3 +10,9 @@
 # Support RCON !
 
 ## Fichier configurable : Config.php
+
+> # Prévisualisation !
+
+# Le style du site est tiré de ce template : https://preview.uideck.com/items/bliss/, des élèments ont été retirées/ajoutées !
+
+# Livepreview : https://streamable.com/53bn5l
