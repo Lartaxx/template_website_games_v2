@@ -88,7 +88,7 @@
 						<a class="" href="./connexion">Connexion</a>
 						</li>
 					{% endif %}
-					{% if session and session.admin == 1 %}
+					{% if session and session.grade != "Joueur" %}
 						<li class="nav-item">
 						<a class="" href="./admin"><strong>Panel Administrateur</strong></a>
 						</li>

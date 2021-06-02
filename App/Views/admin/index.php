@@ -1,4 +1,4 @@
-{% if session and session.admin == 1 %}
+{% if session and session.grade != "Joueur" %}
 <!DOCTYPE html>
 <html lang="fr-FR">
 

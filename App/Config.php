@@ -14,25 +14,25 @@ class Config
      * Database host
      * @var string
      */
-    const DB_HOST = 'db_host'; // example : 127.0.0.1:3306
+    const DB_HOST = '127.0.0.1:3306';
 
     /**
      * Database name
      * @var string
      */
-    const DB_NAME = 'db_name'; // example : website_games
+    const DB_NAME = 'website_games';
 
     /**
      * Database user
      * @var string
      */
-    const DB_USER = 'db_user'; // example : root
+    const DB_USER = 'root';
 
     /**
      * Database password
      * @var string
      */
-    const DB_PASSWORD = 'db_password'; // example : mygoodpassword
+    const DB_PASSWORD = '';
 
     /**
      * Show or hide error messages on screen
@@ -50,12 +50,12 @@ class Config
      * Host of your game server HOST/IP:PORT
      * @var string
      */
-    const SERVER_HOST = "server_host"; // example : 178.239.172.39:27015
+    const SERVER_HOST = "178.239.172.39:27015";
 
-    const RCON_HOST = "rcon_host"; // example : 149.202.89.164
+    const RCON_HOST = "149.202.89.164";
 
-    const RCON_PORT = "rcon_port"; // example : 27001
+    const RCON_PORT = "27031";
 
-    const RCON_PASSWORD = "rcon_password"; // example : mygoodpassword
+    const RCON_PASSWORD = "test";
 }
 
