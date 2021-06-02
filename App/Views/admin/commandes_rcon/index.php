@@ -1,4 +1,4 @@
-{% if session and not has_perm == false and has_perm.create_actu == 1 %}
+{% if session and not has_perm == false and has_perm.rcon == 1 %}
 <!DOCTYPE html>
 <html lang="fr-FR">
 
@@ -41,19 +41,18 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Bienvenue {{ session.name }}</h1>
+                                        {% if get and get.valid == 1 %}
+                                            <p style="color: green;">La commande a bien été envoyée !</p>
+                                        {% endif %}
                                     </div>
-                                    <form class="user" action="./add_actuality/valid" method="POST">
+                                    <form class="user" style="text-decoration: none !important;" action="./rcon/valid" method="POST">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Entrez un titre" name="title">
-                                        </div>
-                                        <div class="form-group">
-                                        <textarea class="form-control form-control-user" placeholder="Entrer un contenu (<br> pour faire un saut de ligne )" name="content"></textarea>
-
+                                                placeholder="Entrez la commande" name="rcon">
                                         </div>
                                         <button class="btn btn-primary btn-user btn-block">
-                                            Créer l'actualité
+                                            Envoyer
                                         </button>
                                         
                                     </form>

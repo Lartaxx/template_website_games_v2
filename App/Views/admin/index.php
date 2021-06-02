@@ -56,7 +56,8 @@
             <div class="sidebar-heading">
                 Gestion
             </div>
-
+            {% if cr_actu.create_actu == 0 and md_actu.modify_actu == 0 %}
+            {% else %}
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -67,12 +68,19 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Choisir une action :</h6>
+                        {% if session and not cr_actu.create_actu == false and cr_actu.create_actu == 1 %}
                         <a class="collapse-item" href="./admin/add_actuality">Créer une actualité</a>
+                        {% endif %}
+                        {% if session and not md_actu.modify_actu == false and md_actu.modify_actu == 1 %}
                         <a class="collapse-item" href="./admin/see_actuality">Voir les acutalités</a>
+                        {% endif %}
                     </div>
                 </div>
             </li>
+            {% endif %}
 
+            {% if cr_user.create_user == 0 and md_user.modify_user == 0 %}
+            {% else %}
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -84,12 +92,55 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Choisir une action :</h6>
+                        {% if session and not cr_user.create_user == false and cr_user.create_user == 1 %}
                         <a class="collapse-item" href="./admin/add_account">Ajouter un utilisateur</a>
+                        {% endif %}
+                        {% if session and not md_user.modify_user == false and md_user.modify_user == 1 %}
                         <a class="collapse-item" href="./admin/see_users">Voir les utilisateurs</a>
+                        {% endif %}
                     </div>
                 </div>
             </li>
+            {% endif %}
 
+            {% if rcon.rcon == 0 %}
+            {% else %}
+             <!-- Nav Item - Utilities Collapse Menu -->
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2"
+                    aria-expanded="true" aria-controls="collapseUtilities2">
+                    <i class="fas fa-hammer"></i>
+                    <span>Commandes modérateur</span>
+                </a>
+                <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Choisir une action :</h6>
+                        {% if session and not rcon.rcon == false and rcon.rcon == 1 %}
+                        <a class="collapse-item" href="./admin/rcon">Commandes RCON</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+            {% endif %}
+            {% if session and session.admin %}
+             <!-- Nav Item - Utilities Collapse Menu -->
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
+                    aria-expanded="true" aria-controls="collapseUtilities3">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Gestion des grades</span>
+                </a>
+                <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Choisir une action :</h6>
+                        <a class="collapse-item" href="./admin/create_grade">Créer un grade</a>
+                        <a class="collapse-item" href="./admin/modify_grade">Modifier un grade</a>
+                    </div>
+                </div>
+            </li>
+            {% endif %}
             <!-- Divider -->
             <hr class="sidebar-divider">
 

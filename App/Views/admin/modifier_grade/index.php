@@ -1,4 +1,4 @@
-{% if session and not has_perm == false and has_perm.modify_actu == 1 %}
+{% if session and session.admin == 1 %}
 <!DOCTYPE html>
 <html lang="fr-FR">
 
@@ -57,7 +57,6 @@
             <div class="sidebar-heading">
                 Gestion
             </div>
-
             {% if cr_actu.create_actu == 0 and md_actu.modify_actu == 0 %}
             {% else %}
             <!-- Nav Item - Pages Collapse Menu -->
@@ -73,8 +72,8 @@
                         {% if session and not cr_actu.create_actu == false and cr_actu.create_actu == 1 %}
                         <a class="collapse-item" href="../admin/add_actuality">Créer une actualité</a>
                         {% endif %}
-                        {% if session and not has_perm.modify_actu == false and has_perm.modify_actu == 1 %}
-                        <a class="collapse-item" href="#"><b>Voir les acutalités</b></a>
+                        {% if session and not md_actu.modify_actu == false and md_actu.modify_actu == 1 %}
+                        <a class="collapse-item" href="../admin/see_actuality">Voir les acutalités</a>
                         {% endif %}
                     </div>
                 </div>
@@ -138,7 +137,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Choisir une action :</h6>
                         <a class="collapse-item" href="../admin/create_grade">Créer un grade</a>
-                        <a class="collapse-item" href="../admin/modify_grade">Modifier un grade</a>
+                        <a class="collapse-item" href="#"><b>Modifier un grade</b></a>
                     </div>
                 </div>
             </li>
@@ -238,39 +237,48 @@
                 
        <!-- /.container-fluid -->
                       <!-- DataTales Example -->
+                      {% if get and get.valid == 1 %}
+                        <h3 style="color: green;">Le grade a bien été modifiée !</h3>
+                    {% endif %}
                       <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Toutes les annonces ({{ all_annonces|length }})</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Tous les grades ({{ grades|length }})</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Titre</th>
-                                            <th>Contenu</th>
-                                            <th>Administrateur</th>
-                                            <th>Date de publication</th>
+                                            <th>Nom du grade</th>
+                                            <th>Créer actualité</th>
+                                            <th>Modifier actualité</th>
+                                            <th>Créer un utilisateur</th>
+                                            <th>Modifier un utilisateur</th>
+                                            <th>RCON</th>
                                             <th>Modification</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Titre</th>
-                                            <th>Contenu</th>
-                                            <th>Administrateur</th>
-                                            <th>Date de publication</th>
+                                            <th>Nom du grade</th>
+                                            <th>Créer actualité</th>
+                                            <th>Modifier actualité</th>
+                                            <th>Créer un utilisateur</th>
+                                            <th>Modifier un utilisateur</th>
+                                            <th>RCON</th>
                                             <th>Modification</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        {% for annonce in all_annonces %}
-                                        <tr>
-                                            <td>{{ annonce.title }}</td>
-                                            <td>{{ annonce.content }}</td>
-                                            <td>{{ annonce.by_admin }}</td>
-                                            <td>{{ annonce.date }}</td>
-                                            <td class="annonce" annonce_id="{{ annonce.id }}" annonce_title="{{ annonce.title }}" annonce_content="{{ annonce.content }}" annonce_date={{ annonce.date }} annonce_admin={{ annonce.by_admin }}  data-toggle="modal" data-target="#modalLoginAvatar">Modifier l'annonce n°{{ annonce.id }}</td>
+                                        {% for _, v in grades %}
+                                        <tr>    
+                                            <td>{{ v.grade_name }}</td>
+                                            <td>{{ v.create_actu }}</td>
+                                            <td>{{ v.modify_actu }}</td>
+                                            <td>{{ v.create_user }}</td>
+                                            <td>{{ v.modify_user }}</td>
+                                            <td>{{ v.rcon }}</td>
+                                            <td class="annonce" data-toggle="modal" data-target="#modalLoginAvatar" grade_id={{ v.id }} nom_grade={{  v.grade_name }} create_actu={{ v.create_actu }} modify_actu={{ v.modify_actu }} create_user={{ v.create_user }} modify_user={{ v.modify_user }} rcon={{ v.rcon }}>Modifier le grade {{ v.grade_name }}</td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
@@ -342,21 +350,49 @@
 
         <form>
             <div class="form-group">
-                <label for="exampleInputEmail1">Titre de l'annonce</label>
-                <input type="text" class="form-control" id="annonce_title" aria-describedby="emailHelp" placeholder="Modifier le titre de l'annonce">
+                <label for="exampleInputEmail1">Nom du grade</label>
+                <input type="text" class="form-control" id="nom_grade" aria-describedby="emailHelp" placeholder="Modifier le titre de l'annonce">
             </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Contenu de l'annonce</label>
-                <textarea style="resize: vertical !important;"class="form-control" id="annonce_content" placeholder="Contenu de l'annonce"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Date de l'annonce</label>
-                <input type="text" class="form-control" id="annonce_date" placeholder="Date de publication de l'annonce" disabled>
-            </div>
-            <div class="form-group">
-            <label for="exampleInputPassword1">Administrateur</label>
-                <input type="text" class="form-control" id="annonce_admin" placeholder="Date de publication de l'annonce" disabled>
-            </div>
+            <h4 class="text-center">Actualités : </h4>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck" name="cr_actu">
+                                                <label class="custom-control-label" for="customCheck">Créer une actualité
+                                                    </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck2" name="md_actu">
+                                                <label class="custom-control-label" for="customCheck2">Modifier une actualité
+                                                    </label>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <h4 class="text-center">Utilisateurs : </h4>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck3" name="cr_user">
+                                                <label class="custom-control-label" for="customCheck3">Créer un utilisateur
+                                                    </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck4" name="md_user">
+                                                <label class="custom-control-label" for="customCheck4">Modifier un utilisateur
+                                                    </label>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <h4 class="text-center">Rcon : </h4>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck5" name="rcon">
+                                                <label class="custom-control-label" for="customCheck5">Utiliser les commandes RCON
+                                                    </label>
+                                            </div>
+                                        </div>
             <br>
             <a id="send" class="btn btn-primary">Envoyer</a>
         </form>
@@ -387,24 +423,36 @@
     <script>
     $(document).ready(function() {
         $(".annonce").off("click").on("click", function() {
-            id_bdd = $(this).attr("annonce_id");
-            annonce_title = $(this).attr("annonce_title");
-            annonce_content = $(this).attr("annonce_content");
-            annonce_date = $(this).attr("annonce_date");
-            annonce_admin = $(this).attr("annonce_admin");
-
-            $("#annonce_title").val(annonce_title);
-            $("#annonce_content").html(annonce_content);
-            $("#annonce_date").attr("value", annonce_date);
-            $("#annonce_admin").attr("value", annonce_admin);
+            id_bdd = $(this).attr("grade_id");
+            grade_name = $(this).attr("nom_grade");
+            create_actu = $(this).attr("create_actu");
+            modify_actu = $(this).attr("modify_actu");
+            create_user = $(this).attr("create_user");
+            modify_user = $(this).attr("modify_user");
+            rcon = $(this).attr("rcon");
+            $("#nom_grade").val(grade_name);
+            $("#customCheck").attr("checked", Boolean(Number(parseInt(create_actu))));
+            $("#customCheck2").attr("checked", Boolean(Number(parseInt(modify_actu))));
+            $("#customCheck3").attr("checked", Boolean(Number(parseInt(create_user))));
+            $("#customCheck4").attr("checked", Boolean(Number(parseInt(modify_user))));
+            $("#customCheck5").attr("checked", Boolean(Number(parseInt(rcon))));
             
            
             $("#send").off("click").on("click", function() {
-                const title_val = $("#annonce_title").val();
-                const content_val = $("#annonce_content").val();
-                $.post("../admin/see_actuality/modify", {id: id_bdd, title: title_val, content: content_val}, function(res) {
-                    document.location.reload();
+                const grade_name = $("#nom_grade").val();
+                const perm1 = ($("#customCheck")[0].checked) ? 1 : 0 ;
+                const perm2 = ($("#customCheck2")[0].checked) ? 1 : 0 ;
+                const perm3 = ($("#customCheck3")[0].checked) ? 1 : 0 ;
+                const perm4 = ($("#customCheck4")[0].checked) ? 1 : 0 ;
+                const perm5 = ($("#customCheck5")[0].checked) ? 1 : 0 ;
+                
+                $.post("../admin/modify_grade/valid", {id: id_bdd, create_actu: perm1, modify_actu: perm2, create_user: perm3, modify_user: perm4, rcon: perm5, grade_name: grade_name}, function(res) {
+                    if (res) {
+                   document.location.reload();
+                   window.location.replace("../admin/modify_grade?valid=1");
+                    }
                 })
+                
             })
         })
     })

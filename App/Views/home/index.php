@@ -204,8 +204,10 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Acualité n°{{ loop.index }} - {{ annonce.title }}</h6>
                                 </div>
                                 <div class="card-body">
-                                    <p>{{ annonce.content|raw }}</p> <br><hr><br><span style="font-size: 12px"> Par : {{ annonce.by_admin }} <br> Date : {{ annonce.date }}</span>
+								{% autoescape false %}
+                                    {{ annonce.content}}<br><hr><br><span style="font-size: 12px"> Par : {{ annonce.by_admin }} <br> Date : {{ annonce.date }}</span>
                                 </div>
+								{% endautoescape %}
                             </div>
 					</div>
 					{% endfor %}
@@ -446,7 +448,7 @@
 				</div>
 
 				<div class="copy-right">
-					<p>Front-end by <a href="https://uideck.com" rel="nofollow" target="_blank"> UIdeck </a><br> Back-end by <a href="https://lartaxx.a-dev.online" target="_blank">Lartaxx</a></p>
+					<p>Front-end by <a href="https://uideck.com" rel="nofollow" target="_blank"> UIdeck </a><br> Back-end by <a href="https://steamcommunity.com/id/lartaxtm/" target="_blank">Lartaxx</a></p>
 				</div>
 
 			</div>

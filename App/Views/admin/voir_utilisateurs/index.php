@@ -1,4 +1,4 @@
-{% if session and session.admin == 1 %}
+{% if session and not has_perm == false and has_perm.modify_user == 1 %}
 <!DOCTYPE html>
 <html lang="fr-FR">
 
@@ -58,6 +58,8 @@
                 Gestion
             </div>
 
+            {% if cr_actu.create_actu == 0 and md_actu.modify_actu == 0 %}
+            {% else %}
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -68,12 +70,19 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Choisir une action :</h6>
-                        <a class="collapse-item" href="./add_actuality">Créer une actualité</a>
-                        <a class="collapse-item" href="./see_actuality">Voir les acutalités</a>
+                        {% if session and not cr_actu.create_actu == false and cr_actu.create_actu == 1 %}
+                        <a class="collapse-item" href="../admin/add_actuality">Créer une actualité</a>
+                        {% endif %}
+                        {% if session and not md_actu.modify_actu == false and md_actu.modify_actu == 1 %}
+                        <a class="collapse-item" href="../admin/see_actuality">Voir les acutalités</a>
+                        {% endif %}
                     </div>
                 </div>
             </li>
+            {% endif %}
 
+            {% if cr_user.create_user == 0 and md_user.modify_user == 0 %}
+            {% else %}
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
@@ -85,12 +94,55 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Choisir une action :</h6>
-                        <a class="collapse-item" href="./add_account">Ajouter un utilisateur</a>
-                        <a class="collapse-item" href="#">Voir les utilisateurs</a>
+                        {% if session and not cr_user.create_user == false and cr_user.create_user == 1 %}
+                        <a class="collapse-item" href="../admin/add_account">Ajouter un utilisateur</a>
+                        {% endif %}
+                        {% if session and not has_perm.modify_user == false and has_perm.modify_user == 1 %}
+                        <a class="collapse-item" href="#"><b>Voir les utilisateurs</b></a>
+                        {% endif %}
                     </div>
                 </div>
             </li>
+            {% endif %}
 
+            {% if rcon.rcon == 0 %}
+            {% else %}
+             <!-- Nav Item - Utilities Collapse Menu -->
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2"
+                    aria-expanded="true" aria-controls="collapseUtilities2">
+                    <i class="fas fa-hammer"></i>
+                    <span>Commandes modérateur</span>
+                </a>
+                <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Choisir une action :</h6>
+                        {% if session and not rcon.rcon == false and rcon.rcon == 1 %}
+                        <a class="collapse-item" href="../admin/rcon">Commandes RCON</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </li>
+            {% endif %}
+            {% if session and session.admin %}
+             <!-- Nav Item - Utilities Collapse Menu -->
+             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities3"
+                    aria-expanded="true" aria-controls="collapseUtilities3">
+                    <i class="fas fa-user-shield"></i>
+                    <span>Gestion des grades</span>
+                </a>
+                <div id="collapseUtilities3" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Choisir une action :</h6>
+                        <a class="collapse-item" href="../admin/create_grade">Créer un grade</a>
+                        <a class="collapse-item" href="../admin/modify_grade">Modifier un grade</a>
+                    </div>
+                </div>
+            </li>
+            {% endif %}
             <!-- Divider -->
             <hr class="sidebar-divider">
 
@@ -198,6 +250,7 @@
                                             <th>Email</th>
                                             <th>Image</th>
                                             <th>Administrateur</th>
+                                            <th>Grade</th>
                                             <th>Modification</th>
                                         </tr>
                                     </thead>
@@ -207,6 +260,7 @@
                                             <th>Email</th>
                                             <th>Image</th>
                                             <th>Administrateur</th>
+                                            <th>Grade</th>
                                             <th>Modification</th>
                                         </tr>
                                     </tfoot>
@@ -227,7 +281,8 @@
                                             <td>{{ user.email }}</td>
                                             <td>{{ img_link }}</td>
                                             <td>{{ is_admin }}</td>
-                                            <td class="user" user_id="{{ user.id }}" user_name="{{ user.username}}" user_email="{{ user.email }}"  user_img="{{ user.img_link }}" is_admin="{{ user.is_admin}}" data-toggle="modal" data-target="#modalLoginAvatar">Modifier {{ user.username }}</td>
+                                            <td>{{ user.grade_name }}</td>
+                                            <td class="user" user_grade={{ user.grade_name }}   user_id="{{ user.id }}" user_name="{{ user.username}}" user_email="{{ user.email }}"  user_img="{{ user.img_link }}" is_admin="{{ user.is_admin}}" data-toggle="modal" data-target="#modalLoginAvatar">Modifier {{ user.username }}</td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>
@@ -308,6 +363,10 @@
                 <label for="exampleInputPassword1">Lien d'image</label>
                 <input type="text" class="form-control" id="user_image" placeholder="Lien de l'image">
             </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Grade :</label>
+                <input type="text" class="form-control" id="user_grade" placeholder="Grade de l'utilisateur">
+            </div>
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" id="user_admin">
                 <label class="form-check-label" for="exampleCheck1">Administrateur</label>
@@ -344,6 +403,7 @@
         $(".user").off("click").on("click", function() {
             to_bdd = 0;
             id_bdd = $(this).attr("user_id");
+            user_grade = $(this).attr("user_grade")
             user_name = $(this).attr("user_name");
             user_email = $(this).attr("user_email");
             user_link = $(this).attr("user_img");
@@ -355,6 +415,7 @@
                 $("#user_admin").removeAttr("checked");
             }
             $("#user_name").html(user_name);
+            $("#user_grade").attr("value",user_grade);
             $("#user_email").attr("value", user_email);
             $("#user_image").attr("value", user_link);
             if(!user_link) $(".user_link").attr('src', "../assets/img/undraw_profile.svg");
@@ -364,11 +425,12 @@
             $("#send").off("click").on("click", function() {
                 const email_val = $("#user_email").val();
                 const link_val = $("#user_image").val();
+                const grade_val = $("#user_grade").val();
                 const is_admin = $("#user_admin");
                 if ( is_admin[0].checked == true) {
                     to_bdd = 1;
                 }
-                $.post("../admin/see_users/modify", {id: id_bdd, email: email_val, img_link: link_val, is_admin: parseInt(to_bdd)}, function(res) {
+                $.post("../admin/see_users/modify", {id: id_bdd, email: email_val, img_link: link_val, is_admin: parseInt(to_bdd), grade_name: grade_val}, function(res) {
                     document.location.reload();
                 })
             })

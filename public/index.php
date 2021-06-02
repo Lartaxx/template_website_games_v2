@@ -49,6 +49,14 @@ $router->add("admin/see_actuality/modify", ['controller' => 'AdminController', '
 $router->add("admin/see_users", ["controller" => "HomeController", "action" => "admin_see_users"]);
 $router->add("admin/see_users/modify", ["controller" => "AdminController", "action" => "admin_modify_user"]);
 
+$router->add("admin/rcon", ["controller" => "HomeController", "action" => "admin_rcon"]);
+$router->add("admin/rcon/valid", ["controller" => "AdminController", "action" => "admin_rcon"]);
+
+$router->add("admin/create_grade", ["controller" => "HomeController", "action" => "admin_create_grade"]);
+$router->add("admin/create_grade/valid", ["controller" => "AdminController", "action" => "admin_create_grade_valid"]);
+
+$router->add("admin/modify_grade", ["controller" => "HomeController", "action" => "admin_see_grades"]);
+$router->add("admin/modify_grade/valid", ["controller" => "AdminController", "action" => "admin_modify_grades"]);
 
 
 

@@ -1,4 +1,4 @@
-{% if session and not has_perm == false and has_perm.create_user == 1 %}
+{% if session and session.admin == 1 %}
 <!DOCTYPE html>
 <html lang="fr-FR">
 
@@ -40,33 +40,54 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Bienvenue {{ session.name }}</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Créer un grade</h1>
                                         {% if get and get.error == 1 %}
-                                            <p style="color: red;">Un compte est déjà existant avec cet email ou ce pseudo !</p>
+                                            <p style="color: red;">Un grade est déjà existant avec ce nom !</p>
                                         {% endif %}
                                     </div>
-                                    <form class="user" action="./add_account/valid" method="POST">
-                                        <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Entrez une adresse e-mail" name="email">
-                                        </div>
+                                    <form class="user user2" action="./create_grade/valid" method="POST">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Entrez un pseudo" name="pseudo">
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Entrez un nom" name="grade_name">
                                         </div>
+                                        <h4 class="text-center">Actualités : </h4>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Entrez un mot de passe" name="pass1">
-                                        </div>
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
-                                                id="exampleInputPassword" placeholder="Répétez le mot de passe" name="pass2">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck" name="cr_actu">
+                                                <label class="custom-control-label" for="customCheck">Créer une actualité
+                                                    </label>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck" name="admin">
-                                                <label class="custom-control-label" for="customCheck">Administrateur
+                                                <input type="checkbox" class="custom-control-input" id="customCheck2" name="md_actu">
+                                                <label class="custom-control-label" for="customCheck2">Modifier une actualité
+                                                    </label>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <h4 class="text-center">Utilisateurs : </h4>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck3" name="cr_user">
+                                                <label class="custom-control-label" for="customCheck3">Créer un utilisateur
+                                                    </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck4" name="md_user">
+                                                <label class="custom-control-label" for="customCheck4">Modifier un utilisateur
+                                                    </label>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <h4 class="text-center">Rcon : </h4>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck5" name="rcon">
+                                                <label class="custom-control-label" for="customCheck5">Utiliser les commandes RCON
                                                     </label>
                                             </div>
                                         </div>

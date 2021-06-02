@@ -4,3 +4,9 @@
 # Les fonctionalités ?
 ## Configurer son serveur, voir le nombre de joueurs et tous les joueurs dans un tableau ! 
 ## Système d'actualités, créer une actualité et les modifiées.
+## Systèmes de grades, créer un grade, modifier un grade et les attribués !
+## Système de permissions, si vous en avez la permission, modifier les permissions des autres grades !
+
+# Support RCON !
+
+## Fichier configurable : Config.php

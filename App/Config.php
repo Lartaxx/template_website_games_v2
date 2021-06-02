@@ -51,5 +51,11 @@ class Config
      * @var string
      */
     const SERVER_HOST = "178.239.172.39:27015";
+
+    const RCON_HOST = "149.202.89.164";
+
+    const RCON_PORT = "27031";
+
+    const RCON_PASSWORD = "test";
 }
 

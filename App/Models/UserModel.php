@@ -27,8 +27,10 @@ class UserModel extends \Core\Model
           $row = $req->fetch(PDO::FETCH_OBJ);
           if ( $row && password_verify($password, $row->password) ) {
               $_SESSION["name"] = $row->username;
+              $_SESSION["id"] = $row->id;
               $_SESSION["admin"] = static::isAdmin($row->id);
               $_SESSION["img_link"] = $row->img_link;
+              $_SESSION["grade"] = $row->grade_name;
               View::headerLocation("../");
           }
           else {
