@@ -98,5 +98,11 @@ class HomeController extends \Core\Controller
         $grades = $admin->getAllGrades();
         View::renderTemplate("admin/modifier_grade/index.php", compact("grades", "md_actu", "cr_actu", "cr_user", "md_user", "rcon"));
     }
+
+    public function admin_send_mail() {
+        $admin = new AdminModel;
+        $emails = $admin->getAllEmails();
+        View::renderTemplate("admin/creer_mail/index.php", compact("emails"));
+    }
    
 }

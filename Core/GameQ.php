@@ -9,7 +9,7 @@ class GameQ {
     protected $host = Config::SERVER_HOST;
 
     protected function init_server() {
-        require_once('../vendor/gameq/src/GameQ/Autoloader.php');
+        require_once('../vendor/austinb/gameq/src/GameQ/Autoloader.php');
         
         $GameQ = new \GameQ\GameQ();
         $GameQ->addServer([

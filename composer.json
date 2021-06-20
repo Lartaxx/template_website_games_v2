@@ -5,8 +5,9 @@
         "restcord/restcord": "^0.5.0",
         "psecio/oauth2-discord": "dev-master",
         "wohali/oauth2-discord-new": "^1.1",
-        "austinb/gameq": "~3.0",
-        "symfony/assetic-bundle": "2.8.x-dev"
+        "austinb/gameq": "3.*@stable",
+        "symfony/assetic-bundle": "2.8.x-dev",
+        "xpaw/php-source-query-class": "dev-master"
     },
     "autoload": {
         "psr-4": {

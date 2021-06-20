@@ -40,7 +40,7 @@ class Adminmodel extends \Core\Model
             ]);
             $all_check = $check->fetch(PDO::FETCH_OBJ);
             if ( $all_check ) {
-              View::headerLocation("../add_account?error=1");
+              View::headerLocation("../add_account");
             }
             else {
             $password = password_hash($password, PASSWORD_DEFAULT);
@@ -113,7 +113,7 @@ class Adminmodel extends \Core\Model
             ]);
             $check = $req->fetch(); 
             if ($check) {
-              View::headerLocation("../create_grade?error=1");
+              View::headerLocation("../create_grade");
               }
             else {
 
@@ -234,5 +234,12 @@ class Adminmodel extends \Core\Model
                   return $rep;
                 }
               }
+            }
+
+            public function getAllEmails() {
+              $db = static::getDB();
+              $req = $db->prepare("SELECT username, email FROM users");
+              $req->execute();
+              return $row = $req->fetchAll();
             }
       }

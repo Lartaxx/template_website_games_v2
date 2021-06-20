@@ -11,7 +11,6 @@
     <title></title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.svg"/>
     <!-- Place favicon.ico in the root directory -->
 
     <!-- ========================= CSS here ========================= -->
@@ -88,7 +87,7 @@
 						<a class="" href="./connexion">Connexion</a>
 						</li>
 					{% endif %}
-					{% if session and session.grade != "Joueur" %}
+					{% if session and session.grade != "Joueur" and player_name != "Invité" %}
 						<li class="nav-item">
 						<a class="" href="./admin"><strong>Panel Administrateur</strong></a>
 						</li>
@@ -461,12 +460,12 @@
     </a>
 
     <!-- ========================= JS here ========================= -->
-    <script src="assets/js/bootstrap-5.0.0-beta2.min.js"></script>
-    <script src="assets/js/count-up.min.js"></script>
-    <script src="assets/js/tiny-slider.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/polifill.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="./assets/js/bootstrap-5.0.0-beta2.min.js"></script>
+    <script src="./assets/js/count-up.min.js"></script>
+    <script src="./assets/js/tiny-slider.js"></script>
+    <script src="./assets/js/wow.min.js"></script>
+    <script src="./assets/js/polifill.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>

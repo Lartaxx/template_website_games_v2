@@ -49,7 +49,7 @@ class AdminController extends \Core\Controller
         $rc = new PHPSource();
         try {
             $rcon = $rc->rconCommand(strval($_POST["rcon"]));
-            View::headerLocation("../rcon?valid=1");
+            View::headerLocation("../rcon");
         }
         catch(Exception $e) {
             echo "Erreur : {$e}";
@@ -66,7 +66,7 @@ class AdminController extends \Core\Controller
         $perm5 = (isset($_POST['rcon']) ? 1 : 0);
 
         $create = $adminmanager->createGrade($perm1, $perm2, $perm3, $perm4, $perm5, $_POST["grade_name"]);
-        View::headerLocation("../create_grade?valid=1");
+        View::headerLocation("../create_grade");
         }
         catch(Exception $e) {
             echo "Erreur : {$e}";
@@ -77,7 +77,7 @@ class AdminController extends \Core\Controller
         $adminmanager = new AdminModel;
         try {
             $modify = $adminmanager->modifyGrade($_POST["id"], $_POST["create_actu"], $_POST["modify_actu"], $_POST["create_user"], $_POST["modify_user"], $_POST["rcon"], $_POST["grade_name"]);
-            return View::headerLocation("../modify_grade?valid=1");
+            return View::headerLocation("../modify_grade");
         }
         catch(Exception $e) {
             echo "Erreur : {$e}";
